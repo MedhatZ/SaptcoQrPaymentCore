@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Payment Result";
+    bool safeMode = ViewBag.SafeMode == true || !Context.Request.Host.Host.Contains("localhost");
+}
+
+<div class="container mt-5 text-center">
+    <h2>
+        @if (ViewBag.Status?.ToString().StartsWith("000") ?? false)
+        {
+            <span style="color:green;">✅ Payment Successful</span>
+        }
+        else if (ViewBag.Status?.ToString().StartsWith("800") ?? false)
+        {
+            <span style="color:red;">❌ Payment Failed</span>
+        }
+        else
+        {
+            <span style="color:orange;">⚠️ Payment Pending / Unknown</span>
+        }
+    </h2>
+
+    <p class="mt-3"><b>Order Number:</b> @ViewBag.OrderNumber ?? @ViewBag.CheckoutId</p>
+    <p><b>Status Code:</b> @ViewBag.Status</p>
+    <p><b>Message:</b> @ViewBag.Message</p>
+
+    @if (!safeMode)
+    {
+        <hr />
+        <h4>Full response JSON (Developer Mode)</h4>
+        @if (ViewBag.ResponseJson != null)
+        {
+            <pre style="background:#f9f9f9; padding:10px; border-radius:4px; text-align:left;">@Html.Raw(ViewBag.ResponseJson.ToString())</pre>
+        }
+        else if (ViewBag.RawResponse != null)
+        {
+            <pre style="background:#f9f9f9; padding:10px; border-radius:4px; text-align:left;">@ViewBag.RawResponse</pre>
+        }
+    }
+
+    <a href="/QrPayment" class="btn btn-primary mt-4">Back to Home</a>
+</div>

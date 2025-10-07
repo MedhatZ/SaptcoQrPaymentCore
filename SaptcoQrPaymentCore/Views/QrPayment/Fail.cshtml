@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Payment Failed";
+    var ordernumber = ViewBag.OrderNumber as string;
+}
+
+<div class="container text-center mt-5">
+    <h1 style="color:red;">❌ Payment Failed</h1>
+
+    <p>Unfortunately, your payment could not be processed.</p>
+
+    @if (!string.IsNullOrEmpty(ordernumber))
+    {
+        <p><b>Order Number:</b> @ordernumber</p>
+    }
+
+    <a href="/QrPayment" class="btn btn-danger mt-3">Try Again</a>
+</div>

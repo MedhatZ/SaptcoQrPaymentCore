@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Payment Form";
+    var scriptUrl = ViewBag.ScriptUrl as string;
+}
+
+<div class="container text-center mt-5">
+    <h3>Processing Payment...</h3>
+
+    @if (!string.IsNullOrEmpty(scriptUrl))
+    {
+        <script src="@scriptUrl"></script>
+        <form action="/QrPayment/Result" class="paymentWidgets" data-brands="VISA MASTER AMEX"></form>
+    }
+    else
+    {
+        <p class="text-danger mt-3">Failed to load payment script.</p>
+    }
+</div>
