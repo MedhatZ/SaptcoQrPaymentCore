@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Saptco QR Payment";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Saptco QR Payment</h2>
+
+    <!-- ✅ Show phone if already stored -->
+    @if (ViewBag.Phone != null)
+    {
+        <div class="alert alert-info text-center">
+            <strong>Phone:</strong> @ViewBag.Phone
+        </div>
+
+        <form method="post" action="/QrPayment/ExecutePurchase" class="text-center mt-4">
+            <button type="submit" class="btn btn-success btn-lg">Proceed to Payment</button>
+        </form>
+    }
+    else
+    {
+        <!-- 🔹 If phone not stored yet -->
+        <form method="post" action="/QrPayment/SavePhone" class="col-md-6 mx-auto mt-3">
+            <div class="form-group mb-3">
+                <label for="phone" class="form-label"><strong>Enter your phone number:</strong></label>
+                <input type="text" name="phone" id="phone" class="form-control" placeholder="05XXXXXXXX" required />
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">OK</button>
+        </form>
+    }
+
+    <!-- ⚠️ Error or success messages -->
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger mt-4 text-center">
+            @ViewBag.Error
+        </div>
+    }
+
+    @if (ViewBag.Success != null && ViewBag.Success == true)
+    {
+        <div class="alert alert-success mt-4 text-center">
+            ✅ Payment initialized successfully!
+        </div>
+    }
+
+    @if (ViewBag.NewUser != null && ViewBag.NewUser == true)
+    {
+        <h3 class="mt-4">Complete your registration</h3>
+        <form method="post" action="/QrPayment/Register" class="col-md-6 mx-auto mt-3">
+            <input type="hidden" name="phone" value="@ViewBag.Phone" />
+            <div class="form-group mb-3">
+                <label>Name</label>
+                <input type="text" name="name" class="form-control" required />
+            </div>
+            <div class="form-group mb-3">
+                <label>Email</label>
+                <input type="email" name="email" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-success w-100">Register</button>
+        </form>
+    }
+
+</div>

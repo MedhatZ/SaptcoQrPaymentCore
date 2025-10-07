@@ -22,6 +22,11 @@
     <p class="mt-3"><b>Order Number:</b> @ViewBag.OrderNumber ?? @ViewBag.CheckoutId</p>
     <p><b>Status Code:</b> @ViewBag.Status</p>
     <p><b>Message:</b> @ViewBag.Message</p>
+    @if (ViewBag.QrImage != null)
+    {
+        <h4>QR Code:</h4>
+        <img src="@ViewBag.QrImage" alt="QR Code" style="width:250px;height:250px;border:1px solid #ccc;padding:10px;" />
+    }
 
     @if (!safeMode)
     {
@@ -37,5 +42,6 @@
         }
     }
 
-    <a href="/QrPayment" class="btn btn-primary mt-4">Back to Home</a>
+   <a href="/SaptcoQrPayment/QrPayment" class="btn btn-primary">Back to Home</a>
+
 </div>

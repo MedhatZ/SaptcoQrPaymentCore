@@ -1,12 +1,8 @@
-﻿@{
-    ViewData["Title"] = "Purchase QR";
-}
+﻿<h3>Enter your mobile number</h3>
 
-<div class="container text-center mt-5">
-    <h2>Purchase QR Ticket</h2>
-    <form asp-action="Purchase" method="post">
-        <button type="submit" class="btn btn-primary mt-4 px-4 py-2">
-            Purchase QR
-        </button>
-    </form>
-</div>
+<form method="post" action="/QrPayment/CheckMobile">
+    <div class="form-group">
+        <input type="text" name="phone" class="form-control" placeholder="05XXXXXXXX" required />
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">OK</button>
+</form>
