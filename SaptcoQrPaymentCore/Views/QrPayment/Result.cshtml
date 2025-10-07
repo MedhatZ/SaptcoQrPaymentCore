@@ -22,6 +22,7 @@
     <p class="mt-3"><b>Order Number:</b> @ViewBag.OrderNumber ?? @ViewBag.CheckoutId</p>
     <p><b>Status Code:</b> @ViewBag.Status</p>
     <p><b>Message:</b> @ViewBag.Message</p>
+
     @if (ViewBag.QrImage != null)
     {
         <h4>QR Code:</h4>
@@ -34,14 +35,18 @@
         <h4>Full response JSON (Developer Mode)</h4>
         @if (ViewBag.ResponseJson != null)
         {
-            <pre style="background:#f9f9f9; padding:10px; border-radius:4px; text-align:left;">@Html.Raw(ViewBag.ResponseJson.ToString())</pre>
+            <pre style="background:#f9f9f9; padding:10px; border-radius:4px; text-align:left;">
+                @Html.Raw(ViewBag.ResponseJson.ToString())
+                    </pre>
         }
         else if (ViewBag.RawResponse != null)
         {
-            <pre style="background:#f9f9f9; padding:10px; border-radius:4px; text-align:left;">@ViewBag.RawResponse</pre>
+            <pre style="background:#f9f9f9; padding:10px; border-radius:4px; text-align:left;">
+                @ViewBag.RawResponse
+                    </pre>
         }
     }
 
-   <a href="/SaptcoQrPayment/QrPayment" class="btn btn-primary">Back to Home</a>
-
+    <!-- ✅ Use Url.Action for flexible navigation -->
+    <a href="@Url.Action("Index", "QrPayment")" class="btn btn-primary mt-3">Back to Home</a>
 </div>

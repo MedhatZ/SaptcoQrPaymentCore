@@ -8,11 +8,23 @@
 
     @if (!string.IsNullOrEmpty(scriptUrl))
     {
+        <!-- ✅ Load the payment widget script dynamically -->
         <script src="@scriptUrl"></script>
-        <form action="/QrPayment/Result" class="paymentWidgets" data-brands="VISA MASTER AMEX"></form>
+
+        <!-- ✅ Use Url.Action instead of a fixed path for environment flexibility -->
+        <form action="@Url.Action("Result", "QrPayment")"
+              class="paymentWidgets"
+              data-brands="VISA MASTER AMEX">
+        </form>
     }
     else
     {
-        <p class="text-danger mt-3">Failed to load payment script.</p>
+        <!-- ⚠️ If the payment script is missing -->
+        <p class="text-danger mt-3">❌ Failed to load payment script.</p>
     }
+
+    <!-- 🔙 Optional back button for easier navigation -->
+    <div class="mt-4">
+        <a href="@Url.Action("Index", "QrPayment")" class="btn btn-secondary">Back</a>
+    </div>
 </div>

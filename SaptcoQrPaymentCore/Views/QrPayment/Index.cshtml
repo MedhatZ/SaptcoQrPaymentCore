@@ -1,8 +1,17 @@
 ﻿<h3>Enter your mobile number</h3>
 
-<form method="post" action="/QrPayment/CheckMobile">
+<form id="mobileForm" method="post" action="@Url.Action("CheckMobile", "QrPayment")">
     <div class="form-group">
-        <input type="text" name="phone" class="form-control" placeholder="05XXXXXXXX" required />
+        <input type="text" name="phone" id="phone" class="form-control" placeholder="05XXXXXXXX" required maxlength="10" />
+        <small id="phoneError" class="text-danger d-none">⚠️ Please enter a valid 10-digit mobile number starting with 05.</small>
     </div>
-    <button type="submit" class="btn btn-primary mt-3">OK</button>
+    <button type="submit" class="btn btn-primary mt-3 w-100">OK</button>
 </form>
+
+@section Scripts {
+    <script>
+        attachValidation("mobileForm", {
+            phone: { inputId: "phone", errorId: "phoneError" }
+        });
+    </script>
+}
