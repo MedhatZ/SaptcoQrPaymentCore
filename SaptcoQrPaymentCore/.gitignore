@@ -1,0 +1,49 @@
+﻿# Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Tt]emp/
+*.log
+
+# Visual Studio user files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio 2019/2022 backup
+.vs/
+.vscode/
+.idea/
+
+# Packages
+*.nupkg
+*.snupkg
+*.nuspec
+packages/
+**/packages/*
+
+# Configuration / secrets
+appsettings.Development.json
+appsettings.Local.json
+*.secret.json
+*.config.user
+
+# Publish artifacts
+publish/
+wwwroot/lib/
+wwwroot/dist/
+
+# Database / cache
+*.db
+*.sqlite
+*.mdf
+*.ldf
+
+# JetBrains Rider
+.idea/
+*.iml
+
+# Others
+*.DS_Store
+Thumbs.db
